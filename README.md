@@ -5,7 +5,7 @@ Creating Streaming Data Pipelines using Kafka
 The project aims to reduce congestion on national highways by analyzing road traffic data from various toll plazas. When a vehicle passes through a toll plaza, vehicle data such as Vehicle_id, vehicle_type, toll_plaza_id, and timestamp will be sent to Kafka. The task is to create a data pipeline to collect real-time streaming data and load it into a database.
 
 # OBJECTIVES
-In this assignment you will create a streaming data pipe by performing these steps:
+In this task you will create a streaming data pipe by performing these steps:
 - Start a MySQL Database server.
 - Create a table to hold the toll data.
 - Install the Kafka python driver.
