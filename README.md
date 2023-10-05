@@ -16,14 +16,14 @@ In this assignment you will create a streaming data pipe by performing these ste
 - Health check of the streaming data pipeline.
 
 # PROCESS
-### 1. Tạo database và table chứa dữ liệu truyền về
+### 1. Create a table to hold the toll data.
     create database tolldata;
 ![create database](https://github.com/CodeWorld-X/Kafka-streaming-data/assets/129016922/66ad47d0-609c-48ec-b0c6-8086feeec516)
     use tolldata;
     create table livetolldata(timestamp datetime,vehicle_id int,vehicle_type char(15),toll_plaza_id smallint);
 ![create table](https://github.com/CodeWorld-X/Kafka-streaming-data/assets/129016922/a474614a-d4fa-4dd1-a1c8-038e473ed01f)
 
-### 2. Cài đặt Kafka Python driver và MySQL python driver
+### 2. Install the Kafka python driver and MySQL python driver.
     python3 -m pip install kafka-python
     python3 -m pip install mysql-connector-python==8.0.31
 ### 3. Start Zookeeper
