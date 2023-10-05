@@ -2,21 +2,61 @@
 Creating Streaming Data Pipelines using Kafka
 
 # OVERVIEW
-Dự án nhằm giảm ùn tắc trên các tuyến đường quốc lộ bằng cách phân tích dữ liệu giao thông đường bộ từ các trạm thu phí khác nhau. Khi một phương tiện đi qua trạm thu phí, dữ liệu của phương tiện như Vehicle_id, vehicle_type, toll_plaza_id và timestamp sẽ được truyền tới Kafka. Công việc là tạo một đường ống dữ liệu để thu thập dữ liệu phát trực tuyến và tải nó vào cơ sở dữ liệu.
+The project aims to reduce congestion on national highways by analyzing road traffic data from various toll plazas. When a vehicle passes through a toll plaza, vehicle data such as Vehicle_id, vehicle_type, toll_plaza_id, and timestamp will be sent to Kafka. The task is to create a data pipeline to collect real-time streaming data and load it into a database.
 
 # OBJECTIVES
-Trong nhiệm vụ này, tạo một đường ồng dữ liệu streaming data bằng các thực hiện các bước sau:
-- Tạo bảng chứa dữ liệu truyền về
-- Khởi động máy chủ Kafka
-- Cài đặt Kafka Python driver
-- Cài đặt MySQL python driver
-- Tạo topic có tên "toll" trong Kafka
-- Chương trình giả lập tạo dữ liệu streaming data
-- Tùy chỉnh chương trình máy phát điện để thu phí theo chủ đề.
-- Tải xuống và tùy chỉnh dữ liệu phát trực tuyến của người tiêu dùng.
-- Tùy chỉnh chương trình tiêu dùng để ghi vào bảng cơ sở dữ liệu MySQL.
-- Xác minh rằng dữ liệu truyền phát đang được thu thập trong bảng cơ sở dữ liệu.
+In this assignment you will create a streaming data pipe by performing these steps:
+- Start a MySQL Database server.
+- Create a table to hold the toll data.
+- Install the Kafka python driver.
+- Install the MySQL python driver.
+- Start the Kafka server.
+- Create file Producer "Toll Traffic Simulator"
+- Create file Comsumer "streaming_data_reader.py"
+- Health check of the streaming data pipeline.
 
 # PROCESS
 ### 1. Tạo database và table chứa dữ liệu truyền về
+    create database tolldata;
 ![create database](https://github.com/CodeWorld-X/Kafka-streaming-data/assets/129016922/66ad47d0-609c-48ec-b0c6-8086feeec516)
+    use tolldata;
+    create table livetolldata(timestamp datetime,vehicle_id int,vehicle_type char(15),toll_plaza_id smallint);
+![create table](https://github.com/CodeWorld-X/Kafka-streaming-data/assets/129016922/a474614a-d4fa-4dd1-a1c8-038e473ed01f)
+
+### 2. Cài đặt Kafka Python driver và MySQL python driver
+    python3 -m pip install kafka-python
+    python3 -m pip install mysql-connector-python==8.0.31
+### 3. Start Zookeeper
+    bin/zookeeper-server-start.sh config/zookeeper.properties
+![Start Zookeeper](https://github.com/CodeWorld-X/Kafka-streaming-data/assets/129016922/c523ffb3-9ece-4dd7-8c67-91bbbcf74157)
+
+### 4. Start Kafka server
+    bin/kafka-server-start.sh config/server.properties
+![Start Kafka server](https://github.com/CodeWorld-X/Kafka-streaming-data/assets/129016922/ed33e834-8d06-4066-a5eb-88f069bcded2)
+
+### 5. Create a topic 
+    bin/kafka-topics.sh --bootstrap-server localhost:9092 --create --topic toll
+![Create a topic ](https://github.com/CodeWorld-X/Kafka-streaming-data/assets/129016922/83e49ef2-2244-4ed5-83a2-4b5670d670da)
+
+### 6. Create file Producer "Toll Traffic Simulator"
+![toll_traffic_generator](https://github.com/CodeWorld-X/Kafka-streaming-data/assets/129016922/be2ab827-1aa5-42f2-bfda-7600b069cdf6)
+
+### 7. Create file Comsumer "streaming_data_reader.py"
+![streaming_data_reader](https://github.com/CodeWorld-X/Kafka-streaming-data/assets/129016922/9e2efc08-ace9-43f9-92bf-8a3e83151103)
+
+### 8. Run the Toll Traffic Simulator
+![run toll trafic](https://github.com/CodeWorld-X/Kafka-streaming-data/assets/129016922/90f5fda9-503e-4af4-9a4c-886a5f1b64a5)
+
+### 9. Run streaming_data_reader.py
+![run streaming data](https://github.com/CodeWorld-X/Kafka-streaming-data/assets/129016922/4c4be518-ee89-4e38-845c-c46c15b8ae4c)
+
+### 10. Health check of the streaming data pipeline.
+![load data in db](https://github.com/CodeWorld-X/Kafka-streaming-data/assets/129016922/46256c60-8c33-4dcc-a8e2-fd0dfaa4faa5)
+
+
+
+
+
+
+    
+    
