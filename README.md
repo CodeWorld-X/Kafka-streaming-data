@@ -12,7 +12,7 @@ In this task you will create a streaming data pipe by performing these steps:
 - Install the MySQL python driver.
 - Start the Kafka server.
 - Create file Producer "Toll Traffic Simulator"
-- Create file Comsumer "streaming_data_reader.py"
+- Create file Consumer "streaming_data_reader.py"
 - Health check of the streaming data pipeline.
 
 # PROCESS
